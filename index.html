@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Crust — Artisanal Coffee & Sourdough Pizzeria</title>
+  <meta name="description" content="Welcome to Café Crust. Explore the perfect harmony of hand-roasted coffee beans and wood-fired artisanal pizzas. Authenticity baked in daily.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Preloader Screen -->
+  <div id="preloader">
+    <div class="preloader-content">
+      <div class="brand-title">CAFÉ CRUST</div>
+      <div class="brand-tagline">BEANS & BREAD • CRAFTED WITH PASSION</div>
+      <div class="loader-track">
+        <div id="loader-bar"></div>
+      </div>
+      <div class="loader-percentage"><span id="loader-percent">0</span>%</div>
+      <div class="loader-status">Preparing the ovens and roasting the beans...</div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor for Premium Interaction -->
+  <div id="custom-cursor"></div>
+
+  <!-- Ambient Light Overlay (Subtle cream/gold gradients) -->
+  <div class="ambient-glow"></div>
+
+  <!-- Glassmorphism Sticky Navbar -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">CAFÉ CRUST</a>
+      <nav>
+        <a href="#about" class="nav-link">Our Story</a>
+        <a href="#menu" class="nav-link">The Menu</a>
+        <a href="#reserve" class="nav-link btn-reserve">Book Table</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Fixed Animation Canvas Container -->
+  <div class="canvas-container">
+    <canvas id="scroll-canvas"></canvas>
+  </div>
+
+  <!-- Scrollable Narrative Overlays -->
+  <main>
+    <!-- Section 1: Hero -->
+    <section class="narrative-section hero-section" id="hero">
+      <div class="narrative-content center-align">
+        <span class="eyebrow fade-in">ESTABLISHED 2026</span>
+        <h1 class="main-heading fade-in">The Perfect Blend</h1>
+        <p class="lead-text fade-in">Where the rich aroma of hand-roasted coffee beans meets the crisp perfection of wood-fired sourdough.</p>
+        <div class="scroll-indicator fade-in">
+          <span class="mouse">
+            <span class="wheel"></span>
+          </span>
+          <span class="scroll-text">Scroll to Experience</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Beans -->
+    <section class="narrative-section split-left" id="coffee">
+      <div class="narrative-content glass-card">
+        <span class="eyebrow">THE CRAFT</span>
+        <h2>Hand-Roasted<br><span class="accent-text">Espresso Beans</span></h2>
+        <p>Every morning, our master roasters select single-origin Arabica beans, profiling them in small batches. The result is a bold, chocolatey, and slightly fruity espresso that forms the soul of Café Crust.</p>
+        <div class="card-footer">
+          <span class="badge">Micro-Lot</span>
+          <span class="badge">100% Organic</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Crust -->
+    <section class="narrative-section split-right" id="pizza">
+      <div class="narrative-content glass-card">
+        <span class="eyebrow">THE FIRE</span>
+        <h2>Slow-Fermented<br><span class="accent-text">Sourdough Crust</span></h2>
+        <p>Our sourdough starter, nurtured for over five years, gives our pizza crust its signature light, airy structure and pleasant tang. Stretched by hand and baked at 900°F in our stone wood-fired oven.</p>
+        <div class="card-footer">
+          <span class="badge">48hr Fermentation</span>
+          <span class="badge">Wild Yeast</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: The Kiss -->
+    <section class="narrative-section center-focus" id="kiss">
+      <div class="narrative-content glass-card wide-card">
+        <span class="eyebrow">THE SIGNATURE</span>
+        <h2>A Kiss of Perfection</h2>
+        <p class="highlight-p">Our stamp of passion. In every cup of coffee and every single pizza crust, you will taste the precise moment of pure dedication—a trademark seal that defines our standards of culinary art.</p>
+        <blockquote class="quote">
+          "Bread feeds the body, but craft feeds the soul."
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Section 5: Menu/Offerings Grid -->
+    <section class="interactive-section" id="menu">
+      <div class="section-header">
+        <span class="eyebrow">OUR CURATED MENU</span>
+        <h2>Excellence in Simplicity</h2>
+      </div>
+      
+      <div class="cards-grid">
+        <div class="menu-card">
+          <div class="card-icon">☕</div>
+          <h3>The Double Cortado</h3>
+          <p>Equal parts rich espresso and steamed textured milk, creating a velvety body with sweet undertones.</p>
+          <span class="price">$4.75</span>
+        </div>
+        <div class="menu-card">
+          <div class="card-icon">🍕</div>
+          <h3>Burrata & Truffle Pizza</h3>
+          <p>Creamy Italian burrata, black truffle oil, fresh basil, and San Marzano tomatoes on wild-yeast sourdough.</p>
+          <span class="price">$22.00</span>
+        </div>
+        <div class="menu-card">
+          <div class="card-icon">🥐</div>
+          <h3>Almond Sourdough Croissant</h3>
+          <p>Flaky layers of laminated sourdough filled with sweet almond frangipane and topped with toasted almonds.</p>
+          <span class="price">$6.20</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Footer and Booking -->
+    <section class="footer-section" id="reserve">
+      <div class="footer-content">
+        <div class="brand-large">CAFÉ CRUST</div>
+        <p class="footer-sub">Join us for the finest coffee by day and wood-fired crusts by night.</p>
+        
+        <div class="contact-details">
+          <div class="detail-item">
+            <h4>Location</h4>
+            <p>108 Artisans Way, Culinary Quarter</p>
+          </div>
+          <div class="detail-item">
+            <h4>Hours</h4>
+            <p>Daily: 7:00 AM — 11:00 PM</p>
+          </div>
+          <div class="detail-item">
+            <h4>Reservations</h4>
+            <p>hello@cafecrust.com | (555) 234-5678</p>
+          </div>
+        </div>
+
+        <div class="reservation-box">
+          <button class="btn-primary" id="book-btn">Secure Your Table</button>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 Café Crust. All rights reserved. Built with passion & precision.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- JS Entrypoint -->
+  <script src="./main.js"></script>
+</body>
+</html>

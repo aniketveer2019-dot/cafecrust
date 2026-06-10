@@ -1,0 +1,735 @@
+/* ==========================================
+   CAFÉ CRUST — DESIGN SYSTEM & STYLES
+   ========================================== */
+
+/* 1. CSS VARIABLES & SYSTEM TOKENS */
+:root {
+  --color-bg-light: #ffffff;
+  --color-bg-soft: #faf9f6;
+  --color-primary: #111111;
+  --color-secondary: #2a2a2a;
+  --color-accent: #8e6f51; /* Elegant warm bronze */
+  --color-accent-light: #e6dfd5;
+  --color-text-main: #333333;
+  --color-text-muted: #666666;
+  --color-border: rgba(17, 17, 17, 0.08);
+  --color-glass-bg: rgba(255, 255, 255, 0.82);
+  --color-glass-border: rgba(255, 255, 255, 0.6);
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', Helvetica, sans-serif;
+  --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --cursor-size: 8px;
+}
+
+/* 2. BASE RESET & INITIALIZATION */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom selection */
+::selection {
+  background-color: var(--color-accent-light);
+  color: var(--color-primary);
+}
+
+/* Smooth Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-soft);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-light);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* 3. PRELOADER & SCREEN LOADER */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg-soft);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
+}
+
+#preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader-content {
+  text-align: center;
+  max-width: 450px;
+  width: 90%;
+  padding: 2rem;
+}
+
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 1s forwards 0.2s;
+}
+
+.brand-tagline {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 1s forwards 0.4s;
+}
+
+.loader-track {
+  width: 100%;
+  height: 2px;
+  background-color: rgba(17, 17, 17, 0.05);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border-radius: 1px;
+}
+
+#loader-bar {
+  width: 0%;
+  height: 100%;
+  background-color: var(--color-accent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: width 0.1s linear;
+}
+
+.loader-percentage {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.loader-status {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+/* 4. PREMIUM UI ELEMENTS */
+/* Custom Cursor */
+#custom-cursor {
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+#custom-cursor.hovered {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(142, 111, 81, 0.15);
+  border: 1px solid var(--color-accent);
+}
+
+/* Ambient glow */
+.ambient-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle at 10% 20%, rgba(230, 223, 213, 0.15) 0%, transparent 60%),
+              radial-gradient(circle at 90% 80%, rgba(142, 111, 81, 0.08) 0%, transparent 50%);
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.65);
+  transition: var(--transition-smooth);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header.scrolled {
+  padding: 1rem 2.5rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav-link {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-main);
+  text-decoration: none;
+  position: relative;
+  padding: 0.3rem 0;
+  transition: var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--color-accent);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.btn-reserve {
+  padding: 0.7rem 1.4rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 40px;
+  font-size: 0.75rem;
+  transition: var(--transition-fast);
+}
+
+.btn-reserve::after {
+  display: none;
+}
+
+.btn-reserve:hover {
+  background-color: var(--color-primary);
+  color: var(--color-bg-light) !important;
+}
+
+/* 5. CANVAS CONTAINER (THE SCROLL VISUAL) */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* Let clicks pass through to content */
+  background-color: var(--color-bg-light);
+}
+
+#scroll-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: 1920px;
+  max-height: 1080px;
+}
+
+/* 6. NARRATIVE SCROLL OVERLAYS */
+main {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.narrative-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 6rem 10% 4rem 10%;
+}
+
+/* Alignments & layouts of story blocks */
+.hero-section {
+  justify-content: center;
+  text-align: center;
+}
+
+.split-left {
+  justify-content: flex-start;
+}
+
+.split-right {
+  justify-content: flex-end;
+}
+
+.center-focus {
+  justify-content: center;
+}
+
+/* Glassmorphism Text Cards */
+.glass-card {
+  max-width: 480px;
+  padding: 3.5rem;
+  background-color: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: var(--transition-smooth);
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.glass-card.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wide-card {
+  max-width: 750px;
+  text-align: center;
+}
+
+/* Typography elements */
+.eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.narrative-section h2 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.accent-text {
+  font-style: italic;
+  font-family: var(--font-serif);
+  color: var(--color-accent);
+  font-weight: 400;
+}
+
+.narrative-section p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-main);
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.card-footer {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 0.9rem;
+  border-radius: 30px;
+  background-color: rgba(142, 111, 81, 0.06);
+  border: 1px solid rgba(142, 111, 81, 0.12);
+  color: var(--color-accent);
+}
+
+/* Hero elements */
+.hero-section .narrative-content {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-heading {
+  font-family: var(--font-serif);
+  font-size: 5.5rem;
+  font-weight: 300;
+  color: var(--color-primary);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.lead-text {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  line-height: 1.5;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  max-width: 600px;
+}
+
+.scroll-indicator {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.mouse {
+  width: 24px;
+  height: 40px;
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  position: relative;
+}
+
+.wheel {
+  width: 4px;
+  height: 8px;
+  background-color: var(--color-accent);
+  border-radius: 2px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheel 2s infinite ease-in-out;
+}
+
+.scroll-text {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Quote */
+.quote {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-accent);
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
+}
+
+.highlight-p {
+  font-size: 1.15rem !important;
+}
+
+/* 7. INTERACTIVE MENU GRID */
+.interactive-section {
+  position: relative;
+  z-index: 3;
+  background-color: var(--color-bg-light);
+  border-top: 1px solid var(--color-border);
+  padding: 8rem 10%;
+  width: 100%;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-header h2 {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--color-primary);
+}
+
+.cards-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.menu-card {
+  padding: 3rem 2.5rem;
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+  background-color: var(--color-bg-light);
+  border-color: var(--color-accent);
+  box-shadow: 0 15px 35px rgba(142, 111, 81, 0.05);
+}
+
+.card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.menu-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.menu-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.price {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* 8. FOOTER & RESERVATIONS */
+.footer-section {
+  position: relative;
+  z-index: 3;
+  background-color: #0b0b0b; /* Very premium dark footer */
+  color: #e0e0e0;
+  padding: 8rem 10% 3rem 10%;
+  width: 100%;
+  text-align: center;
+}
+
+.brand-large {
+  font-family: var(--font-serif);
+  font-size: 4.5rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: var(--color-bg-light);
+  margin-bottom: 1rem;
+}
+
+.footer-sub {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: #888888;
+  margin-bottom: 5rem;
+}
+
+.contact-details {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto 5rem auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 5rem;
+}
+
+.detail-item {
+  flex: 1;
+  min-width: 250px;
+}
+
+.detail-item h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-light);
+  margin-bottom: 1rem;
+}
+
+.detail-item p {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: #cccccc;
+  line-height: 1.5;
+}
+
+.reservation-box {
+  margin-bottom: 6rem;
+}
+
+.btn-primary {
+  padding: 1.2rem 2.8rem;
+  background-color: var(--color-accent);
+  color: var(--color-bg-light);
+  border: none;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-bg-light);
+  color: var(--color-primary);
+  transform: scale(1.03);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: #666666;
+}
+
+/* 9. KEYFRAMES & UTILITIES */
+@keyframes slideUpFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollWheel {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateX(-50%) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Page fade-in animations on load */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-section .fade-in:nth-child(1) { animation-delay: 0.3s; }
+.hero-section .fade-in:nth-child(2) { animation-delay: 0.5s; }
+.hero-section .fade-in:nth-child(3) { animation-delay: 0.7s; }
+.hero-section .fade-in:nth-child(4) { animation-delay: 0.9s; }
+
+/* 10. RESPONSIVE MEDIA QUERIES */
+@media (max-width: 992px) {
+  .nav-container {
+    padding: 1.5rem 1.5rem;
+  }
+  .main-heading {
+    font-size: 4rem;
+  }
+  .lead-text {
+    font-size: 1.3rem;
+  }
+  .narrative-section {
+    padding: 6rem 5% 4rem 5%;
+  }
+  .split-left, .split-right {
+    justify-content: center;
+  }
+  .glass-card {
+    max-width: 100%;
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    background-color: var(--color-bg-light);
+  }
+  nav {
+    display: none; /* Can implement burger if needed, keeping simple and clean */
+  }
+  .brand-large {
+    font-size: 3rem;
+  }
+  .contact-details {
+    flex-direction: column;
+    gap: 3rem;
+  }
+  #custom-cursor {
+    display: none; /* Remove on touch screens */
+  }
+}

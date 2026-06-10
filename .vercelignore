@@ -1,0 +1,12 @@
+# Local static server script
+server.js
+
+# Git metadata and files
+.git/
+.gitignore
+.vercelignore
+
+# Local checklist artifacts and documentation
+task.md
+implementation_plan.md
+walkthrough.md
